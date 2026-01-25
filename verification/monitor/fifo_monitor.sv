@@ -4,12 +4,6 @@
 // Author : Asmara Rauf
 // Creation Date : 07/18/2024
 //
-// No portions of this material may be reproduced in any form without
-// the written permission of CoMira solutions Inc.
-//
-// All information contained in this document is CoMira solutions
-// private, proprietary and trade secret.
-//
 // Description
 // ===========
 // This module contains fifo monitor extended from uvm_monitor base component.
@@ -58,7 +52,6 @@ class fifo_monitor extends uvm_monitor;
           read_data();
         end
         begin
-         // @(posedge vif.clk); //for read write synchronization
           write_data();
         end
       join_none      
@@ -79,6 +72,7 @@ class fifo_monitor extends uvm_monitor;
       txx_read.rd_en      = vif.rd_en;
       txx_read.rd_data    = vif.rd_data;
       txx_read.fifo_empty = vif.fifo_empty;   
+      txx_read.wr_en      = vif.wr_en;  //for coverage
       rd_monitor_analysis_port.write(txx_read);
     end
   endtask
